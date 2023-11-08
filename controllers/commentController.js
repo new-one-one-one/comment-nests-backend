@@ -68,4 +68,45 @@ const deleteComment = async (req, res) => {
   }
 };
 
-module.exports = { createComment, updateComment, deleteComment };
+const getCommentsForPost = async (req, res) => {
+    try {
+      const postId = req.params.postId;
+  
+      const comments = await Comment.find({
+        post: postId,
+        parentComment: null, 
+      }).populate('user', 'email'); 
+  
+      const populateReplies = async (comment) => {
+        if (comment.replies && comment.replies.length > 0) {
+          const populatedReplies = await Comment.populate(comment.replies, {
+            path: 'user',
+            select: 'email',
+          });
+  
+          comment.replies = populatedReplies;
+  
+          for (const reply of comment.replies) {
+            await populateReplies(reply);
+          }
+        }
+      };
+  
+      for (const comment of comments) {
+        await populateReplies(comment);
+      }
+  
+      logger.info(`Retrieved comments for post ID: ${postId}`);
+      res.status(200).json(comments);
+    } catch (error) {
+      logger.error(`Error retrieving comments: ${error.message}`);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  };
+
+module.exports = { 
+    createComment, 
+    updateComment, 
+    deleteComment,
+    getCommentsForPost 
+};

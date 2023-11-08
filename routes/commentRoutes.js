@@ -6,5 +6,6 @@ const authenticateToken = require('../middleware/auth');
 router.post('/create', authenticateToken, commentController.createComment);
 router.put('/update/:id', authenticateToken, commentController.updateComment);
 router.delete('/delete/:id', authenticateToken, commentController.deleteComment);
+router.get('/post/:id', authenticateToken, commentController.deleteComment);
 
 module.exports = router;
