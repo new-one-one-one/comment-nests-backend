@@ -16,6 +16,8 @@ checkMongoDBConnection();
 
 app.use('/auth', require('./routes/authRoutes'));
 app.use('/post', require('./routes/postRoutes'));
+app.use('/comment', require('./routes/commentRoutes'));
+
 
 app.listen(PORT, (err) => {
     if(err) {
