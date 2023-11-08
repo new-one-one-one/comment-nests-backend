@@ -15,6 +15,7 @@ const PORT = process.env.PORT || 8000;
 checkMongoDBConnection();
 
 app.use('/auth', require('./routes/authRoutes'));
+app.use('/post', require('./routes/postRoutes'));
 
 app.listen(PORT, (err) => {
     if(err) {
