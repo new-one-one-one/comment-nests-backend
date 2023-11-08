@@ -10,6 +10,7 @@ const logFormat = printf(({ level, message, timestamp }) => {
 });
 
 const logDir = process.env.LOG_DIR || "../logs";
+
 const date = new Date();
 const year = date.getFullYear();
 const month = date.toLocaleString('default', { month: 'long' });
