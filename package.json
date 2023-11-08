@@ -1,0 +1,34 @@
+{
+  "name": "comment-nests-backend",
+  "version": "1.0.0",
+  "description": "Backend server providing auth, comments CRUD and storing in MongoDB database",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/new-one-one-one/comment-nests-backend.git"
+  },
+  "keywords": [
+    "auth",
+    "JWT",
+    "mongoDB",
+    "comment"
+  ],
+  "author": "piyushohri",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/new-one-one-one/comment-nests-backend/issues"
+  },
+  "homepage": "https://github.com/new-one-one-one/comment-nests-backend#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.0",
+    "winston": "^3.11.0"
+  }
+}
