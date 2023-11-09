@@ -145,4 +145,4 @@ Explain the structure of your MongoDB schemas:
 
 ## License
 
-Specify your project's license if applicable.
+MIT
