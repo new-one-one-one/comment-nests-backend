@@ -23,4 +23,16 @@ const createPost = async (req, res) => {
   }
 };
 
-module.exports = { createPost };
+const getAllPosts = async (req, res) => {
+  try {
+    const posts = await Post.find().populate('user', 'email'); // Populate the 'user' field with 'email' property
+    res.json(posts);
+    logger.info("Retrieve all posts")
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+
+module.exports = { createPost, getAllPosts };
