@@ -1,16 +1,22 @@
 const Comment = require('../models/comment');
 const logger = require('../helpers/logger');
+const jwt = require('jsonwebtoken');
 
 const createComment = async (req, res) => {
   try {
+
     const { text, user, post, parentComment } = req.body;
 
+    const token = req.headers.authorization;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);    
+
     console.log({
-        text, user, post, parentComment
-    })
+      text, user, post, parentComment
+   })
+
     const comment = new Comment({
       text,
-      user,
+      user: decoded.userId,
       post,
       parentComment,
     });
